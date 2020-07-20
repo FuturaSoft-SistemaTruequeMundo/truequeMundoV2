@@ -16,13 +16,14 @@ console.log(url)
 function submitDataPost(){
     let email = document.querySelector('#frmEmailLogin')
     let password = document.querySelector('#frmPasswordLogin')
+    console.log(email + password)
 
     var data = {
         "user": email.value,
         "pass": password.value
     };
 
-    console.log(data.email + data.password)
+    console.log(data.user + data.pass)
     debugger
 
     fetch(url, {
