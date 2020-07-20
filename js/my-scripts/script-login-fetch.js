@@ -18,8 +18,8 @@ function submitDataPost(){
     let password = document.querySelector('#frmPasswordLogin')
 
     var data = {
-        "email": email.value,
-        "password": password.value
+        "user": email.value,
+        "pass": password.value
     };
 
     console.log(data.email + data.password)
@@ -34,6 +34,7 @@ function submitDataPost(){
     }).then(res => {
         let response = res.json()
         console.log(response);
+        debugger
     })
     .catch(error => console.error('Error:', error))
     .then(response => console.log('Success:', response));
