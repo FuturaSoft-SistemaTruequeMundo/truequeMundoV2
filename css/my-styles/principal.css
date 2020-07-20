@@ -1,0 +1,124 @@
+body{
+    background-color: #F8FAFB;
+}
+
+.font-color{
+    color: white;
+}
+
+.font-color:hover{
+    color: #001D9F;
+}
+
+#header{
+    width: 100%;
+    background-color: #1142CD;
+    margin: 0;
+}
+
+#headerTopLeft, #headerTopRight{
+    height: 80px;
+}
+
+#headerTop, #headerBottom{
+    width: 80%;
+}
+
+#headerBottom{
+    font-size: 1.1em;
+}
+
+.img-logo{
+    height: 50px;
+}
+
+#formText{
+    height: 38px;
+    border-radius: 4px;
+}
+
+.btn-bkg{
+    background-color: #001D9F;
+}
+
+.container-principal{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#principal{
+    background-color: #F8FAFB;
+}
+
+#sectionPrincipal{
+    padding: 10px auto;
+}
+
+.card{
+    width: 17rem;
+    margin: 10px auto;
+}
+
+#footer{
+    width: 100%;
+    background-color: #1142CD;
+    margin: 0;
+}
+
+.anchor{
+    width: 100%;
+}
+
+.btn-contact{
+    width: 50%;
+}
+
+#btnUser, #btnBell, #btnSearch, #btnMenu{
+    font-size: 1.3em;
+}
+
+#btnSearch, #btnMenu{
+    display:none;
+}
+
+@media screen and (max-width: 1300px){
+    #headerTop, #headerBottom{
+        width: 95%;
+    }
+
+    .container-principal{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    #searcher{
+        display: none !important; 
+    }
+
+    #btnSearch{
+        display: inline-block;
+    }
+    
+    .container-principal{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 572px){
+    .card{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 380px){
+    #btnUser, #btnBell, #btnSearch{
+        display: none;
+    }
+
+    #btnMenu{
+        display: inline-block;
+        font-size: 2em;
+    }
+}
+
