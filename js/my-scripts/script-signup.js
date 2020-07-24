@@ -36,7 +36,7 @@ async function submitDataSignup(){
             
             alert("El usuario ha sido creado");
             setTimeout(10000);
-            window.location.href = "http://127.0.0.1:5500/frontend/index.html"; 
+            window.location.href = "./index.html"; 
     }
     else{
         alert('Los espacios no pueden estar en blanco');
