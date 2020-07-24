@@ -30,7 +30,7 @@ async function submitDataSignup(){
 
             const response = await fetch(url, dataDetails);
             console.log(response);
-            debugger
+            
             const data = await response.text();
             console.log(data);
             
