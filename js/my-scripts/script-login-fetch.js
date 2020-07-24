@@ -1,42 +1,61 @@
-let login = document.getElementById('btnSubmitLogin')
-login.addEventListener('click', submitDataPost)
+let btnLogin = document.getElementById('btnSubmitLogin');
 
-let url = 'https://truequemundov1.herokuapp.com/login'
+btnLogin.addEventListener('click', submitDataLogin);
 
-console.log(url)
+async function submitDataLogin(){
+    let email = document.getElementById('frmEmailLogin');
+    let password = document.getElementById('frmPasswordLogin');
 
-// fetch(url)
-//   .then(function(response) {
-//     return response.json()
-//   })
-//   .then(function(myJson) {
-//     console.log(myJson)
-//   });
+    let validation = validateFields(email.value, password.value);
 
-function submitDataPost(){
-    let email = document.querySelector('#frmEmailLogin')
-    let password = document.querySelector('#frmPasswordLogin')
-    console.log(email + password)
+    if(validation == 'ok'){
+        let url = 'https://truequemundov1.herokuapp.com/login';
 
-    var data = {
-        "user": email.value,
-        "pass": password.value
-    };
+        const dataDetails = {
+            method: 'POST',
+            body: JSON.stringify({
+            "user": email.value,
+            "pass": password.value
+            }),
+            headers:{
+                'Content-Type': 'application/json',
+            }
+            };     
 
-    console.log(data.user + data.pass)
-    debugger
+        console.log(dataDetails);
 
-    fetch(url, {
-    method: 'POST', // or 'PUT'
-    body: JSON.stringify(data), // data can be `string` or {object}!
-    headers:{
-        'Content-Type': 'application/json'
-    }
-    }).then(res => {
-        let response = res.json()
+        const response = await fetch(url, dataDetails);
         console.log(response);
-        debugger
-    })
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+        
+        const data = await response.text();
+        console.log(data);
+    
+        messageToUserLogin(data);
+    }
+    else{
+        alert('Los espacios no pueden estar en blanco');
+    }
+}
+
+function validateFields(email, pass){
+    if(email=='' || pass=='')
+        return 'error';
+    else
+        return 'ok';
+}
+
+function messageToUserLogin(data){
+    let aviso = document.getElementById('pAviso');
+    if(data == 'Validado'){
+        // alert("Acceso correcto");
+        aviso.style.color = 'green';
+        aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
+        setTimeout(10000);
+        window.location.href = "http://127.0.0.1:5500/frontend/html/principal.html"
+    }
+    else{
+        // alert("Acceso incorrecto");
+        aviso.style.color = 'red';
+        aviso.innerHTML = 'Clave Incorrecta';
+    }
 }
