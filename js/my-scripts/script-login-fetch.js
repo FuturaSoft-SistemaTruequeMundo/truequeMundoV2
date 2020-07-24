@@ -51,7 +51,7 @@ function messageToUserLogin(data){
         aviso.style.color = 'green';
         aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
         setTimeout(10000);
-        window.location.href = "http://127.0.0.1:5500/frontend/html/principal.html"
+        window.location.href = "./html/principal.html"
     }
     else{
         // alert("Acceso incorrecto");
