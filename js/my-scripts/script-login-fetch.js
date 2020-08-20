@@ -1,4 +1,6 @@
-let btnLogin = document.getElementById('btnSubmitLogin');
+let dataLogin;
+
+const btnLogin = document.getElementById('btnSubmitLogin');
 
 btnLogin.addEventListener('click', submitDataLogin);
 
@@ -9,7 +11,7 @@ async function submitDataLogin(){
     let validation = validateFields(email.value, password.value);
 
     if(validation == 'ok'){
-        let url = 'https://truequemundov1.herokuapp.com/login';
+        let url = 'https://truequeprueba.herokuapp.com/login';
 
         const dataDetails = {
             method: 'POST',
@@ -27,9 +29,9 @@ async function submitDataLogin(){
         const response = await fetch(url, dataDetails);
         console.log(response);
         
-        const data = await response.text();
+        const data = await response.json();
         console.log(data);
-    
+        
         messageToUserLogin(data);
     }
     else{
@@ -46,14 +48,13 @@ function validateFields(email, pass){
 
 function messageToUserLogin(data){
     let aviso = document.getElementById('pAviso');
-    if(data == 'Validado'){
+    if(data.message == 'Validado'){
         // alert("Acceso correcto");
         aviso.style.color = 'green';
         aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
         setTimeout(10000);
-        window.location.href = "http://127.0.0.1:5500/frontend/html/principal.html"
-    }
-    else{
+        window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
+    }else{
         // alert("Acceso incorrecto");
         aviso.style.color = 'red';
         aviso.innerHTML = 'Clave Incorrecta';

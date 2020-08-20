@@ -81,6 +81,22 @@ body{
     display:none;
 }
 
+.item-searcher{
+    height: 35px;
+    margin-right: 3px;
+    border-radius: 3px;
+}
+
+.card-text .card-height{
+    height: 100px;
+}
+
+.label-style{
+    width: 120px;
+    text-align: left;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 1300px){
     #headerTop, #headerBottom{
         width: 95%;
