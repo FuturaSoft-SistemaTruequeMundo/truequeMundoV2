@@ -55,8 +55,6 @@ function messageToUserLogin(data){
         setTimeout(10000);
 
         window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
-    }else{
-        window.location.href = "./html/principal.html"
     }
     else{
         // alert("Acceso incorrecto");
