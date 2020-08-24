@@ -49,15 +49,11 @@ function messageToUserLogin(data){
         aviso.style.color = 'green';
         aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
         setTimeout(10000);
-<<<<<<< HEAD
         window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
     }else{
-=======
-
         window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
     }
     else{
->>>>>>> 7d2ebccc584a7523fd569510457204a0e8a03022
         // alert("Acceso incorrecto");
         aviso.style.color = 'red';
         aviso.innerHTML = 'Clave Incorrecta';
