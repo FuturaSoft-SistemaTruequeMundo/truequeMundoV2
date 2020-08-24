@@ -50,8 +50,6 @@ function messageToUserLogin(data){
         aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
         setTimeout(10000);
         window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
-    }else{
-        window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
     }
     else{
         // alert("Acceso incorrecto");
