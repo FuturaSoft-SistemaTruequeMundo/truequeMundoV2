@@ -24,13 +24,9 @@ async function submitDataLogin(){
             }
             };     
 
-        console.log(dataDetails);
-
         const response = await fetch(url, dataDetails);
-        console.log(response);
         
         const data = await response.json();
-        console.log(data);
         
         messageToUserLogin(data);
     }
@@ -53,14 +49,8 @@ function messageToUserLogin(data){
         aviso.style.color = 'green';
         aviso.innerHTML = 'Clave Correcta</br>Redireccionando...';
         setTimeout(10000);
-<<<<<<< HEAD
         window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
     }else{
-=======
-        window.location.href = "./html/principal.html"
-    }
-    else{
->>>>>>> b9a8b5fbcd5be564ce38c4079b4aac58aea1b2e8
         // alert("Acceso incorrecto");
         aviso.style.color = 'red';
         aviso.innerHTML = 'Clave Incorrecta';

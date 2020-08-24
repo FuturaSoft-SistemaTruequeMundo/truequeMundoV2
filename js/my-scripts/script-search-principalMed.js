@@ -4,16 +4,16 @@
 // let cTot = 0;
 // let cPar = 0;
 
-const searcher = document.getElementById('btnSearcher');
+const searcherMed = document.getElementById('btnSearcherMed');
 
-searcher.addEventListener('click', searcherGet);
+searcherMed.addEventListener('click', searcherGetMed);
 
-async function searcherGet(){
+async function searcherGetMed(){
     document.getElementById('titlePrincipal').innerHTML = "RESULTADOS"
 
-    const texto = document.getElementById('txtSearcher');
-    const country = document.getElementById('countrySearcher');
-    const city = document.getElementById('citySearcher');
+    const texto = document.getElementById('txtSearcherMed');
+    const country = document.getElementById('countrySearcherMed');
+    const city = document.getElementById('citySearcherMed');
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
     cont = 0;
@@ -41,8 +41,6 @@ async function searcherGet(){
     const response = await fetch(url, dataDetails);
     const data = await response.json();
 
-    console.log(data)
-
     data.forEach((item) => {
         HTMLString[cTot] = itemTemplate(item);
         if(cTot<cantItems){
@@ -68,13 +66,16 @@ async function searcherGet(){
             }
         }
 
+        let likes = "0"; //it.visitas
+        likes = parseInt(likes);
+
         return (`<article class="card">
         <div class="card-body">
             <h5 class="card-title">${it.nombreProducto}</h5>
             <p class="card-text" style="height: 80px;">${it.descripcion}</p>
             <p class="card-text ${colorState} state-text">${it.estado}</p>
             <div class="d-flex flex-row justify-content-center mb-3">
-                <button href="#modalProduct${cont}" ${statusProduct} class="btn btn-primary btn-bkg" data-toggle="modal" onclick="updateViews(${it.visitas})">Contact to truequer</button>
+                <button href="#modalProduct${cont}" ${statusProduct} class="btn btn-primary btn-bkg" data-toggle="modal" onclick="updateViews(${likes})">Contact to truequer</button>
                 <!--START modalProduct-->
                 <div class="modal fade" tabindex="-1" role="dialog" id="modalProduct${cont}">
                     <div class="modal-dialog">
@@ -110,11 +111,11 @@ async function searcherGet(){
     document.getElementById('btnAddProduct').style.display = 'none';
 }
 
-const btnMore = document.getElementById('btnWatchMore');
+const btnMoreMed = document.getElementById('btnWatchMore');
 
-btnMore.addEventListener('click', loadMoreProducts);
+btnMoreMed.addEventListener('click', loadMoreProductsMed);
 
-function loadMoreProducts(){
+function loadMoreProductsMed(){
     const sectPrincipal = document.getElementById('sectionPrincipal');
     let i=0;
 
@@ -122,7 +123,7 @@ function loadMoreProducts(){
         cTot--;
 
     if(cPar == cTot){
-        alert("No more items!!!");
+        // alert("No more items!!!");
         cont = 0;
         HTMLString = [];
         cTot = 0;
@@ -139,12 +140,14 @@ function loadMoreProducts(){
     }
 }
 
-function updateViews(x){
-    console.log("antes" + x);
+function updateViews(xLikes){
+    let x2Likes = parseInt(xLikes);
 
-    x = x + 1;
+    console.log("antes" + x2Likes);
 
-    console.log("despues" + x);
+    x2Likes = x2Likes + 1;
+
+    console.log("despues" + x2Likes);
 
     // async function saveProfile(){
     //     const url = 'https://truequeprueba.herokuapp.com/events/update_usuario';

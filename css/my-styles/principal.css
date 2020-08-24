@@ -97,6 +97,39 @@ body{
     font-weight: bold;
 }
 
+.tam-data{
+    width: 100%;
+}
+
+.tam-data2{
+    width: 90%;
+    margin: 0 .5em;
+}
+
+#btnWatchMore, #btnAddProduct{
+    display: none;
+}
+
+#headerBottom ul li{
+    display: none;
+}
+
+#titlePrincipal{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text-center{
+    width: 50%;
+}
+
+.state-text{
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
+
 @media screen and (max-width: 1300px){
     #headerTop, #headerBottom{
         width: 95%;
@@ -127,14 +160,23 @@ body{
     }
 }
 
-@media screen and (max-width: 380px){
-    #btnUser, #btnBell, #btnSearch{
-        display: none;
+@media screen and (max-width: 440px){
+    #headerTop{
+        flex-direction: column;
     }
 
-    #btnMenu{
-        display: inline-block;
-        font-size: 2em;
+    #headerTopRight{
+        height: 50px;
+        width: 100%;
+    }
+
+    #navList ul{
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    #navList{
+        width: 90vw;
     }
 }
 

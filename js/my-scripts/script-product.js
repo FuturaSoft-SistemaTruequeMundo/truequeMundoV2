@@ -7,6 +7,7 @@ async function loadUserProducts(){
     const url = urlBase + 'events/buscar_productoUsuario';
     const HTMLmyProducts = document.getElementById('modalBodyProducts');
     let HTMLString = '';
+    HTMLmyProducts.innerHTML = HTMLString;
     let cont = 0;
 
     const dataDetails = {

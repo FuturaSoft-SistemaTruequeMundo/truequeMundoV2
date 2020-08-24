@@ -26,24 +26,13 @@ async function submitDataSignup(){
             }
             };     
 
-            console.log(dataDetails);
-
             const response = await fetch(url, dataDetails);
-            console.log(response);
             
             const data = await response.text();
-            console.log(data);
-<<<<<<< HEAD
 
             alert("El usuario ha sido creado");
             setTimeout(10000);
             window.location.href = "./index.html";
-=======
-            
-            alert("El usuario ha sido creado");
-            setTimeout(10000);
-            window.location.href = "./index.html"; 
->>>>>>> b9a8b5fbcd5be564ce38c4079b4aac58aea1b2e8
     }
     else{
         alert('Los espacios no pueden estar en blanco');
