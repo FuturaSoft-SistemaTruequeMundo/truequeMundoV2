@@ -29,21 +29,10 @@ async function submitDataSignup(){
             const response = await fetch(url, dataDetails);
             
             const data = await response.text();
-<<<<<<< HEAD
-=======
-            console.log(data);
->>>>>>> 7d2ebccc584a7523fd569510457204a0e8a03022
-
-            alert("El usuario ha sido creado");
-            setTimeout(10000);
-            window.location.href = "./index.html";
-<<<<<<< HEAD
-=======
             
             alert("El usuario ha sido creado");
             setTimeout(10000);
             window.location.href = "./index.html"; 
->>>>>>> 7d2ebccc584a7523fd569510457204a0e8a03022
     }
     else{
         alert('Los espacios no pueden estar en blanco');

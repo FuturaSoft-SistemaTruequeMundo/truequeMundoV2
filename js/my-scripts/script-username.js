@@ -74,4 +74,8 @@ fetch('https://truequeprueba.herokuapp.com/events/buscar_usuario', dataDetails)
     console.log('Hubo un problema con la petición Fetch:' + error.message);
   });
 
-
+const cantItems = 15;
+let cont = 0;
+let HTMLString = [];
+let cTot = 0;
+let cPar = 0;

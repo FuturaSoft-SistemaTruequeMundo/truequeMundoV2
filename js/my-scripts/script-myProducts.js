@@ -6,7 +6,7 @@ async function myProductsGet(){
     document.getElementById('btnWatchMore').style.display = 'none';
     document.getElementById('btnWatchMoreOnly').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'flex';
-    document.getElementById('titlePrincipal').innerHTML = "MY PRODUCTS"
+    document.getElementById('titlePrincipal').innerHTML = "MIS PRODUCTOS"
 
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
@@ -34,7 +34,7 @@ async function myProductsGet(){
     const data = await response.json();
 
     if(data.length == 0)
-        alert("You don't have any product yet");
+        alert("No tiene productos todavía");
     else{
         data.forEach((item) => {
             HTMLString = itemTemplate(item);
@@ -44,6 +44,16 @@ async function myProductsGet(){
         function itemTemplate(it){
             const urlFotos = 'https://truequeprueba.herokuapp.com/Public/uploads/';
             c++;
+            let selDisp = '';
+            let selTrue = '';
+
+            if(it.estado == 'disponible'){
+                selDisp = 'selected';
+            }
+            else{
+                selTrue = 'selected';
+            }
+            
             return (`<article class="card">
             <div class="card-body">
                 <h5 class="card-title">${it.nombreProducto}</h5>
@@ -65,41 +75,44 @@ async function myProductsGet(){
                             </div>
                             <div class="modal-body d-flex flex-column">
                                 <div class="d-flex">
-                                    <label for="editProductCode" class="label-style">Code:</label>
+                                    <label for="editProductCode" class="label-style">Código:</label>
                                     <input type="text" class="tam-data mb-3" disabled id="editProductCode" value="${it.codigo}">
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductName" class="label-style">Name:</label>
+                                    <label for="editProductName" class="label-style">Nombre:</label>
                                     <input type="text" class="tam-data mb-3" required id="editProductName" value="${it.nombreProducto}">
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductType" class="label-style">Type:</label>
-                                    <input type="text" class="tam-data mb-3" required id="editProductType" value="${it.tipo}">
+                                    <label for="editProductType" class="label-style">Tipo:</label>
+                                    <input type="text" class="tam-data mb-3" required disabled id="editProductType" value="${it.tipo}">
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductCategory" class="label-style">Category:</label>
-                                    <input type="text" class="tam-data mb-3" required id="editProductCategory" value="${it.categoria}">
+                                    <label for="editProductCategory" class="label-style">Categoría:</label>
+                                    <input type="text" class="tam-data mb-3" required disabled id="editProductCategory" value="${it.categoria}">
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductCondition" class="label-style">Condition:</label>
-                                    <input type="text" class="tam-data mb-3" required id="editProductCondition" value="${it.condicion}">
+                                    <label for="editProductCondition" class="label-style">Condición:</label>
+                                    <input type="text" class="tam-data mb-3" required disabled id="editProductCondition" value="${it.condicion}">
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductState" class="label-style">State:</label>
-                                    <input type="text" class="tam-data mb-3" required id="editProductState" value="${it.estado}">
+                                    <label for="editProductState" class="label-style">Estado:</label>
+                                        <select class="tam-data mb-3" required id="editProductState">
+                                            <option value="disponible" ${selDisp}>Disponible</option>
+                                            <option value="truequeado" ${selTrue}>Truequeado</option>
+                                        </select>
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductDescription" class="label-style">Description:</label>
+                                    <label for="editProductDescription" class="label-style">Descripción:</label>
                                     <textarea required rows="4" class="tam-data mb-3" id="editProductDescription">${it.descripcion}</textarea>
                                 </div>
                                 <div class="d-flex">
-                                    <label for="editProductPhoto" class="label-style">Photo:</label>
+                                    <label for="editProductPhoto" class="label-style">Foto:</label>
                                     <input type="file" required id="editProductPhoto" class="tam-data mb-3">
                                 </div>
                             </div>
                             <div class="modal-footer"> 
                                 <div class="anchor d-flex justify-content-center">
-                                    <button class="btn btn-success" id="btnSaveProduct">Save changes</button>        
+                                    <button class="btn btn-success" id="btnSaveProduct">Guardar cambios</button>        
                                 </div>
                             </div>
                           </div>

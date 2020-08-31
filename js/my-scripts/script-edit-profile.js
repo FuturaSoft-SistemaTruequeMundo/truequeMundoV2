@@ -5,7 +5,8 @@ btnLoadProfile.addEventListener('click', watchProfile);
 async function watchProfile(){
     document.getElementById('btnWatchMore').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
-    document.getElementById('titlePrincipal').innerHTML = "EDIT MY PROFILE"
+    document.getElementById('btnWatchMoreOnly').style.display = 'none';
+    document.getElementById('titlePrincipal').innerHTML = "EDITAR PERFIL";
 
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
@@ -23,9 +24,51 @@ async function watchProfile(){
         };     
 
     const response = await fetch(url, dataDetails);
-    console.log(response);
     const data = await response.json();
-    console.log(data);
+
+    let divChecked = "";
+
+    switch(data.sexo){
+        case 'M': divChecked = `<div class="d-flex label-style">
+                        <label class="mr-5">Sexo:</label>
+                        <input type="radio" id="male" name="gender" value="M" class="ml-2 mr-1" checked="true">
+                        <label for="male" class="mr-3">M</label>
+                        <input type="radio" id="female" name="gender" value="F" class="mr-1">
+                        <label for="female" class="mr-3">F</label>
+                        <input type="radio" id="other" name="gender" value="O" class="mr-1">
+                        <label for="other">Otro</label>
+                        </div>`;
+                        break;
+        case 'F': divChecked = `<div class="d-flex label-style">
+                        <label class="mr-5">Sexo:</label>
+                        <input type="radio" id="male" name="gender" value="M" class="ml-2 mr-1">
+                        <label for="male" class="mr-3">M</label>
+                        <input type="radio" id="female" name="gender" value="F" class="mr-1" checked="true">
+                        <label for="female" class="mr-3">F</label>
+                        <input type="radio" id="other" name="gender" value="O" class="mr-1">
+                        <label for="other">Otro</label>
+                        </div>`;
+                        break;
+        case 'O': divChecked = `<div class="d-flex label-style">
+                        <label class="mr-5">Sexo:</label>
+                        <input type="radio" id="male" name="gender" value="M" class="ml-2 mr-1">
+                        <label for="male" class="mr-3">M</label>
+                        <input type="radio" id="female" name="gender" value="F" class="mr-1">
+                        <label for="female" class="mr-3">F</label>
+                        <input type="radio" id="other" name="gender" value="O" class="mr-1" checked="true">
+                        <label for="other">Otro</label>
+                        </div>`;
+                        break;
+        default: divChecked = `<div class="d-flex label-style">
+                        <label class="mr-5">Sexo:</label>
+                        <input type="radio" id="male" name="gender" value="M" class="ml-2 mr-1">
+                        <label for="male" class="mr-3">M</label>
+                        <input type="radio" id="female" name="gender" value="F" class="mr-1">
+                        <label for="female" class="mr-3">F</label>
+                        <input type="radio" id="other" name="gender" value="O" class="mr-1">
+                        <label for="other">Otro</label>
+                        </div>`;
+    }
 
     function itemTemplate(it){
         const urlFotos = 'https://truequeprueba.herokuapp.com/Public/uploads/';
@@ -33,11 +76,11 @@ async function watchProfile(){
         <div class="card-header">${it.nombre} ${it.apellido}</div>
         <div class="card-body">
             <div class="d-flex">
-                <label for="editFName" class="label-style">First name:</label>
+                <label for="editFName" class="label-style">Nombre:</label>
                 <input type="text" required id="editFName" class="tam-data mb-3" value="${it.nombre}">
             </div>
             <div class="d-flex">
-                <label for="editLName" class="label-style">Last Name:</label>
+                <label for="editLName" class="label-style">Apellido</label>
                 <input type="text" required id="editLName" class="tam-data mb-3" value="${it.apellido}">
             </div>
             <div class="d-flex">
@@ -45,54 +88,47 @@ async function watchProfile(){
                 <input type="email" disabled id="editEmail" class="tam-data mb-3" value="${it.email}">
             </div>
             <div class="d-flex">
-                <label for="editPassword" class="label-style">Password:</label>
+                <label for="editPassword" class="label-style">Contraseña:</label>
                 <input type="password" required id="editPassword" class="tam-data mb-3" value="${it.password}">
             </div>
             <div class="d-flex">
-                <label for="editPhone" class="label-style">Telephone:</label>
+                <label for="editPhone" class="label-style">Teléfono:</label>
                 <input type="text" id="editPhone" class="tam-data mb-3" value="${it.telefono}">
             </div>
             <div class="d-flex">
-                <label for="editCell" class="label-style">Cell Phone:</label>
+                <label for="editCell" class="label-style">Celular:</label>
                 <input type="text" id="editCell" class="tam-data mb-3" value="${it.celular}">
             </div>
             <!-- <div class="d-flex">
-                <label for="editPhoto" class="label-style">Photo:</label>
+                <label for="editPhoto" class="label-style">Foto:</label>
                 <input type="file" id="editPhoto" class="tam-data mb-3" value="${urlFotos}${it.foto}">
             </div> -->
             <div class="d-flex">
-                <label for="editDateBirth" class="label-style">Date of birth:</label>
+                <label for="editDateBirth" class="label-style">Fecha de Nacimiento:</label>
                 <input type="date" id="editDateBirth" class="tam-data mb-3" value="${it.fechaNacimiento}">
             </div>
-            <div>
-                <label class="label-style">Sex:</label>
-                <input type="radio" id="male" name="gender" value="male" class="mr-1">
-                <label for="male" class="mr-3">Male</label>
-                <input type="radio" id="female" name="gender" value="female" class="mr-1">
-                <label for="female" class="mr-3">Female</label>
-                <input type="radio" id="other" name="gender" value="other" class="mr-1">
-                <label for="other">Other</label>
-            </div>
+            ${divChecked}
             <div class="d-flex">
-                <label for="editCountry" class="label-style">Country:</label>
+                <label for="editCountry" class="label-style">Pais:</label>
                 <input type="text" id="editCountry" class="tam-data mb-3" value="${it.pais}">
             </div>
             <div class="d-flex">
-                <label for="editCity" class="label-style">City:</label>
+                <label for="editCity" class="label-style">Ciudad:</label>
                 <input type="text" id="editCity" class="tam-data mb-3" value="${it.ciudad}">
             </div>
             <div class="d-flex">
-                <label for="editAddress" class="label-style">Address:</label>
+                <label for="editAddress" class="label-style">Dirección:</label>
                 <input type="text" id="editAddress" class="tam-data mb-3" value="${it.direccion}">
             </div>       
         </div>
-        <div class="modal-footer">
-                <button class="btn btn-primary btn-bkg text-white" id="btnSaveData">Save changes</button>
+        <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-primary btn-bkg text-white" id="btnSaveData">Guardar Cambios</button>
         </div>
     </article>`)
     }
 
     HTMLString = itemTemplate(data);
+
     sectPrincipal.innerHTML = sectPrincipal.innerHTML + HTMLString;
 
     const btnSave = document.getElementById('btnSaveData');
@@ -110,7 +146,20 @@ async function watchProfile(){
         let country = document.getElementById('editCountry');
         let city = document.getElementById('editCity');
         let address = document.getElementById('editAddress');
+        
+        let sex = '';
 
+        if(document.getElementById('male').checked == true)
+            sex = 'M';
+        else{
+            if(document.getElementById('female').checked == true)
+                sex = 'F';
+            else{
+                if(document.getElementById('other').checked == true)
+                    sex = 'O';
+            }
+        }
+        
         const url = 'https://truequeprueba.herokuapp.com/events/update_usuario';
 
         const dataDetails = {
@@ -123,6 +172,7 @@ async function watchProfile(){
             "telefono": phone.value,
             "celular": cellular.value,
             "fechaNacimiento": dateBirth.value,
+            "sexo": sex,
             "pais": country.value,
             "ciudad": city.value,
             "direccion": address.value

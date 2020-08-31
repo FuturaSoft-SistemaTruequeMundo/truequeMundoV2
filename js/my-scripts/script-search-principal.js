@@ -1,19 +1,18 @@
-// const cantItems = 15;
-// let cont = 0;
-// let HTMLString = [];
-// let cTot = 0;
-// let cPar = 0;
-
 const searcher = document.getElementById('btnSearcher');
+searcher.addEventListener('click', searcherGetPrincipal);
 
-searcher.addEventListener('click', searcherGet);
-
-async function searcherGet(){
-    document.getElementById('titlePrincipal').innerHTML = "RESULTADOS"
-
+function searcherGetPrincipal(){
     const texto = document.getElementById('txtSearcher');
     const country = document.getElementById('countrySearcher');
     const city = document.getElementById('citySearcher');
+    const sectPrincipal = document.getElementById('sectionPrincipal');
+
+    searcherGet(texto, country, city);
+}
+
+async function searcherGet(texto, country, city){
+    document.getElementById('titlePrincipal').innerHTML = "RESULTADOS"
+
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
     cont = 0;
@@ -74,7 +73,7 @@ async function searcherGet(){
             <p class="card-text" style="height: 80px;">${it.descripcion}</p>
             <p class="card-text ${colorState} state-text">${it.estado}</p>
             <div class="d-flex flex-row justify-content-center mb-3">
-                <button href="#modalProduct${cont}" ${statusProduct} class="btn btn-primary btn-bkg" data-toggle="modal" onclick="updateViews(${it.visitas})">Contact to truequer</button>
+                <button href="#modalProduct${cont}" ${statusProduct} class="btn btn-primary btn-bkg" data-toggle="modal" onclick="updateViews(${it.visitas})">Truequear</button>
                 <!--START modalProduct-->
                 <div class="modal fade" tabindex="-1" role="dialog" id="modalProduct${cont}">
                     <div class="modal-dialog">
@@ -108,6 +107,46 @@ async function searcherGet(){
     document.getElementById('btnWatchMore').style.display = 'flex';
     document.getElementById('btnWatchMoreOnly').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
+
+    function updateViews(xLikes){
+        let x2Likes = parseInt(xLikes);
+    
+        console.log("antes" + x2Likes);
+    
+        x2Likes = x2Likes + 1;
+    
+        console.log("despues" + x2Likes);
+    
+            const dataDetails = {
+                method: 'POST',
+                body: JSON.stringify({
+                "email": dataUserLogged.email,
+                "codigo": it.codigo,
+                "nombre": it.nombre,
+                "tipo": it.tipo,
+                "categoria": it.categoria,
+                "condicion": it.condicion,
+                "estado": it.estado,
+                "descripcion": it.descripcion,
+                "visitas": it.visitas,
+                "file": []
+                }),
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+                };     
+
+            fetch('https://truequeprueba.herokuapp.com/events/update_producto', dataDetails)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console(data);
+        })
+        .catch(function(error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
+    }
 }
 
 const btnMore = document.getElementById('btnWatchMore');
@@ -131,7 +170,7 @@ function loadMoreProducts(){
     else{
         while(cPar<cTot){
             if(i<cantItems){
-                sectPrincipal.innerHTML = sectPrincipal.innerHTML + HTMLString[cPar+i];
+                sectPrincipal.innerHTML = sectPrincipal.innerHTML + HTMLString[cPar];
                 i++;
                 cPar++;
             }
@@ -139,41 +178,3 @@ function loadMoreProducts(){
     }
 }
 
-function updateViews(x){
-    console.log("antes" + x);
-
-    x = x + 1;
-
-    console.log("despues" + x);
-
-    // async function saveProfile(){
-    //     const url = 'https://truequeprueba.herokuapp.com/events/update_usuario';
-
-    //     const dataDetails = {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //         "codigo": dataUserLogged.code,
-    //         "nombre": it.nombreProducto,
-    //         "apellido": it.apellido,
-    //         "password": it.password,
-    //         "telefono": it.telefono,
-    //         "celular": it.celular,
-    //         "fechaNacimiento": it.fechaNacimiento,
-    //         "pais": it.pais,
-    //         "ciudad": it.ciudad,
-    //         "direccion": it.value,
-    //         "visitas": it.visitas
-    //         }),
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //         }
-    //         };     
-    
-    //     console.log(dataDetails);
-
-    //     const response = await fetch(url, dataDetails);
-    //     const data = await response.text();
-
-    //     alert(data);
-    // }
-}

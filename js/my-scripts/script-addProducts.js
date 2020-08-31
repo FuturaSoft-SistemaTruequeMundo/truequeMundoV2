@@ -1,54 +1,76 @@
 const btnAddProduct = document.getElementById('btnAddProduct');
-
 btnAddProduct.addEventListener('click', addNewProduct);
 
 async function addNewProduct(){
     document.getElementById('btnWatchMore').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
-    document.getElementById('titlePrincipal').innerHTML = "ADD NEW PRODUCT"
+    document.getElementById('titlePrincipal').innerHTML = "AGREGAR PRODUCTO NUEVO"
 
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
 
     HTMLString = `<article class="card text-center">
-        <div class="card-header">New product</div>
+        <div class="card-header">Nuevo producto</div>
         <div class="card-body">
             <div class="d-flex">
-                <label for="editProductCode" class="label-style">Code:</label>
+                <label for="editProductCode" class="label-style">Código:</label>
                 <input type="text" class="tam-data mb-3" disabled id="editProductCode" value="">
             </div>
             <div class="d-flex">
-                <label for="editProductName" class="label-style">Name:</label>
+                <label for="editProductName" class="label-style">Nombre:</label>
                 <input type="text" class="tam-data mb-3" required id="editProductName" value="">
             </div>
             <div class="d-flex">
-                <label for="editProductType" class="label-style">Type:</label>
-                <input type="text" class="tam-data mb-3" required id="editProductType" value="">
+                <label for="editProductType" class="label-style">Tipo:</label>
+                <select class="tam-data mb-3" required id="editProductType">
+                    <option value="Producto">Producto</option>
+                    <option value="Servicio">Servicio</option>
+                </select>
             </div>
             <div class="d-flex">
-                <label for="editProductCategory" class="label-style">Category:</label>
-                <input type="text" class="tam-data mb-3" required id="editProductCategory" value="">
+                <label for="editProductCategory" class="label-style">Categoría:</label>
+                <select class="tam-data mb-3" required id="editProductCategory">
+                    <option value="Inmuebles">Inmuebles</option>
+                    <option value="Electrodomesticos">Electrodomésticos</option>
+                    <option value="Muebles">Muebles</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Informatica">Informatica</option>
+                    <option value="Oficina">Oficina</option>
+                    <option value="Seguridad">Seguridad</option>
+                    <option value="Salud">Salud</option>
+                    <option value="Belleza">Belleza</option>
+                    <option value="Peluqueria">Peluquería</option>
+                    <option value="Vehiculos">Vehículos</option>
+                    <option value="Juguetes">Juguetes</option>
+                    <option value="Telefonia">Telefonía</option>
+                    <option value="Comunicacion">Comunicacion</option>
+                    <option value="Otros">Otros</option>
+                </select>
             </div>
             <div class="d-flex">
-                <label for="editProductCondition" class="label-style">Condition:</label>
-                <input type="text" class="tam-data mb-3" required id="editProductCondition" value="">
+                <label for="editProductCondition" class="label-style">Condición:</label>
+                <input type="number" class="tam-data mb-3" required id="editProductCondition" min="1" max="10">
             </div>
             <div class="d-flex">
-                <label for="editProductState" class="label-style">State:</label>
-                <input type="text" class="tam-data mb-3" required id="editProductState" value="">
+                <label for="editProductState" class="label-style">Estado:</label>
+                <select class="tam-data mb-3" required id="editProductState">
+                    <option value="disponible">Disponible</option>
+                    <option value="truequeado">Truequeado</option>
+                </select>
             </div>
             <div class="d-flex">
-                <label for="editProductDescription" class="label-style">Description:</label>
+                <label for="editProductDescription" class="label-style">Descripción:</label>
                 <textarea required rows="4" class="tam-data mb-3" id="editProductDescription"></textarea>
             </div>
             <div class="d-flex">
-                <label for="editProductPhoto" class="label-style">Photo:</label>
+                <label for="editProductPhoto" class="label-style">Foto:</label>
                 <input type="file" required id="editProductPhoto" class="tam-data mb-3">
             </div>
         </div>
             <div class="modal-footer"> 
                 <div class="anchor d-flex justify-content-center">
-                    <button class="btn btn-success" id="btnSaveNewProduct">Save product</button>        
+                    <button class="btn btn-success" id="btnSaveNewProduct">Guardar producto</button>        
                 </div>
             </div>
     </article>`;
@@ -108,21 +130,16 @@ async function addNewProduct(){
                 'Content-Type': 'application/json',
             }
             };     
-
-        console.log(dataDetails);
         
         const response = await fetch(url, dataDetails);
-        console.log(response);
         const data = await response.text();
 
-        console.log(data);
-
         if(data == "ok")
-            alert("Added new product");
+            alert("Se ha agregado el nuevo producto");
         else
-            alert("Error adding new product");
+            alert("Error agregando el producto, intente nuevamente");
         
-        console.log('guardado!!!')
+        console.log('guardado!!!');
     }
 
     cont = 0;

@@ -109,6 +109,46 @@ async function searcherGetMed(){
     document.getElementById('btnWatchMore').style.display = 'flex';
     document.getElementById('btnWatchMoreOnly').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
+
+    function updateViews(xLikes){
+        let x2Likes = parseInt(xLikes);
+    
+        console.log("antes" + x2Likes);
+    
+        x2Likes = x2Likes + 1;
+    
+        console.log("despues" + x2Likes);
+    
+            const dataDetails = {
+                method: 'POST',
+                body: JSON.stringify({
+                "email": dataUserLogged.email,
+                "codigo": it.codigo,
+                "nombre": it.nombre,
+                "tipo": it.tipo,
+                "categoria": it.categoria,
+                "condicion": it.condicion,
+                "estado": it.estado,
+                "descripcion": it.descripcion,
+                "visitas": it.visitas,
+                "file": []
+                }),
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+                };     
+
+            fetch('https://truequeprueba.herokuapp.com/events/update_producto', dataDetails)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console(data);
+        })
+        .catch(function(error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
+    }
 }
 
 const btnMoreMed = document.getElementById('btnWatchMore');
@@ -140,43 +180,3 @@ function loadMoreProductsMed(){
     }
 }
 
-function updateViews(xLikes){
-    let x2Likes = parseInt(xLikes);
-
-    console.log("antes" + x2Likes);
-
-    x2Likes = x2Likes + 1;
-
-    console.log("despues" + x2Likes);
-
-    // async function saveProfile(){
-    //     const url = 'https://truequeprueba.herokuapp.com/events/update_usuario';
-
-    //     const dataDetails = {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //         "codigo": dataUserLogged.code,
-    //         "nombre": it.nombreProducto,
-    //         "apellido": it.apellido,
-    //         "password": it.password,
-    //         "telefono": it.telefono,
-    //         "celular": it.celular,
-    //         "fechaNacimiento": it.fechaNacimiento,
-    //         "pais": it.pais,
-    //         "ciudad": it.ciudad,
-    //         "direccion": it.value,
-    //         "visitas": it.visitas
-    //         }),
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //         }
-    //         };     
-    
-    //     console.log(dataDetails);
-
-    //     const response = await fetch(url, dataDetails);
-    //     const data = await response.text();
-
-    //     alert(data);
-    // }
-}
