@@ -29,6 +29,15 @@ async function submitDataSignup(){
             const response = await fetch(url, dataDetails);
             
             const data = await response.text();
+<<<<<<< HEAD
+=======
+
+            console.log(data);
+
+            alert("El usuario ha sido creado");
+            setTimeout(10000);
+            window.location.href = "./index.html";
+>>>>>>> 60e7cbda94b991ad6ac07f454b54b04d59684f8d
             
             alert("El usuario ha sido creado");
             setTimeout(10000);
