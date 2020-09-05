@@ -1,16 +1,17 @@
-const btnAddProduct = document.getElementById('btnAddProduct');
-btnAddProduct.addEventListener('click', addNewProduct);
+const btnAddService = document.getElementById('btnAddService');
+btnAddService.addEventListener('click', addNewService);
 
-async function addNewProduct(){
+async function addNewService(){
     document.getElementById('btnWatchMore').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
-    document.getElementById('titlePrincipal').innerHTML = "AGREGAR PRODUCTO NUEVO"
+    document.getElementById('btnAddService').style.display = 'none';
+    document.getElementById('titlePrincipal').innerHTML = "AGREGAR SERVICIO NUEVO"
 
     const sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
-
+    
     HTMLString = `<article class="card text-center">
-        <div class="card-header">Nuevo producto</div>
+        <div class="card-header">Nuevo servicio</div>
         <div class="card-body">
             <div class="d-flex">
                 <label for="editProductCode" class="label-style">Código:</label>
@@ -22,8 +23,7 @@ async function addNewProduct(){
             </div>
             <div class="d-flex">
                 <label for="editProductType" class="label-style">Tipo:</label>
-                <select class="tam-data mb-3" required id="editProductType">
-                    <option value="Producto">Producto</option>
+                <select class="tam-data mb-3" disabled id="editProductType">
                     <option value="Servicio">Servicio</option>
                 </select>
             </div>
@@ -49,14 +49,9 @@ async function addNewProduct(){
                 </select>
             </div>
             <div class="d-flex">
-                <label for="editProductCondition" class="label-style">Condición:</label>
-                <input type="number" class="tam-data mb-3" required id="editProductCondition" min="1" max="10">
-            </div>
-            <div class="d-flex">
                 <label for="editProductState" class="label-style">Estado:</label>
-                <select class="tam-data mb-3" required id="editProductState">
+                <select class="tam-data mb-3" disabled id="editProductState">
                     <option value="disponible">Disponible</option>
-                    <option value="truequeado">Truequeado</option>
                 </select>
             </div>
             <div class="d-flex">
@@ -70,7 +65,7 @@ async function addNewProduct(){
         </div>
             <div class="modal-footer"> 
                 <div class="anchor d-flex justify-content-center">
-                    <button class="btn btn-success" id="btnSaveNewProduct">Guardar producto</button>        
+                    <button class="btn btn-primary btn-bkg text-white" id="btnSaveNewProduct">Guardar producto</button>        
                 </div>
             </div>
     </article>`;
@@ -87,7 +82,6 @@ async function addNewProduct(){
         let productName = document.getElementById('editProductName');
         let productType = document.getElementById('editProductType');
         let productCategory = document.getElementById('editProductCategory');
-        let productCondition = document.getElementById('editProductCondition');
         let productState = document.getElementById('editProductState');
         let productDescription = document.getElementById('editProductDescription');
         
@@ -121,7 +115,7 @@ async function addNewProduct(){
             "nombre": productName.value,
             "tipo": productType.value,
             "categoria": productCategory.value,
-            "condicion": productCondition.value,
+            "condicion": '',
             "estado": productState.value,
             "descripcion": productDescription.value,
             "file": []

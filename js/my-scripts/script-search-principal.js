@@ -1,19 +1,27 @@
 const searcher = document.getElementById('btnSearcher');
 searcher.addEventListener('click', searcherGetPrincipal);
 
-function searcherGetPrincipal(){
-    const texto = document.getElementById('txtSearcher');
-    const country = document.getElementById('countrySearcher');
-    const city = document.getElementById('citySearcher');
-    const sectPrincipal = document.getElementById('sectionPrincipal');
+const txtEnter = document.getElementById('txtSearcher');
+const countryEnter = document.getElementById('countrySearcher');
+const cityEnter = document.getElementById('citySearcher');
 
-    searcherGet(texto, country, city);
+txtEnter.addEventListener('keyup', validarEnter);
+countryEnter.addEventListener('keyup', validarEnter);
+cityEnter.addEventListener('keyup', validarEnter);
+
+function validarEnter(event){
+    if (event.keyCode === 13)
+        searcherGetPrincipal();
 }
 
-async function searcherGet(texto, country, city){
-    document.getElementById('titlePrincipal').innerHTML = "RESULTADOS"
+function searcherGetPrincipal(){
+    searcherGet(document.getElementById('txtSearcher').value, document.getElementById('countrySearcher').value, document.getElementById('citySearcher').value, 'RESULTADOS');
+}
 
-    const sectPrincipal = document.getElementById('sectionPrincipal');
+async function searcherGet(texto, country, city, titleText){
+    document.getElementById('titlePrincipal').innerHTML = titleText;
+
+    let sectPrincipal = document.getElementById('sectionPrincipal');
     sectPrincipal.innerHTML = "";
     cont = 0;
     cTot = 0, cPar=0;
@@ -28,9 +36,9 @@ async function searcherGet(texto, country, city){
     const dataDetails = {
         method: 'POST',
         body: JSON.stringify({
-        "pais": country.value,
-        "ciudad": city.value,
-        "nombreProducto": texto.value
+        "pais": country,
+        "ciudad": city,
+        "nombreProducto": texto
         }),
         headers:{
             'Content-Type': 'application/json'
@@ -39,8 +47,6 @@ async function searcherGet(texto, country, city){
 
     const response = await fetch(url, dataDetails);
     const data = await response.json();
-
-    console.log(data)
 
     data.forEach((item) => {
         HTMLString[cTot] = itemTemplate(item);
@@ -91,8 +97,8 @@ async function searcherGet(texto, country, city){
                         <div class="modal-footer">
                             <!-- <div><h3 class="text-primary">Contactar</h3></div> -->
                             <div class="anchor d-flex flex-row justify-content-center">
-                                <a href="mailto:${it.email}" class="btn btn-info mr-1 btn-contact">Email</a>
-                                <a href="https://wa.me/51${it.celular}?text=Me%20gustar%C3%ADa%20obtener%20tu%20servicio%20o%20producto" target="_blank" class="btn btn-success ml-1 btn-contact">Whatsapp</a>        
+                                <a href="mailto:${it.email}" class="btn btn-info mr-1 btn-contact"><i class="far fa-envelope"></i> Email</a>
+                                <a href="https://wa.me/51${it.celular}?text=Me%20gustar%C3%ADa%20obtener%20tu%20servicio%20o%20producto" target="_blank" class="btn btn-success ml-1 btn-contact"><i class="fab fa-whatsapp"></i> Whatsapp</a>        
                             </div>
                         </div>
                       </div>
@@ -107,6 +113,7 @@ async function searcherGet(texto, country, city){
     document.getElementById('btnWatchMore').style.display = 'flex';
     document.getElementById('btnWatchMoreOnly').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'none';
+    document.getElementById('btnAddService').style.display = 'none';
 
     function updateViews(xLikes){
         let x2Likes = parseInt(xLikes);

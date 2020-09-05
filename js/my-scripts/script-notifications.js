@@ -26,7 +26,7 @@ async function loadNotifications(){
     let totNotific = 0;
 
     function itemTemplate(it){
-        return (`<a class="dropdown-item" href="#">${it.nombreProducto} <i class="fas fa-thumbs-up"></i> ${it.visitas}</a>`)
+        return (`<a class="d-flex justify-content-between dropdown-item" style="width: 220px" href="#"><p>${it.nombreProducto}</p><p><i class="fas fa-eye"></i> ${it.visitas}</p></a>`)
     }
 
     data.forEach((item) => {

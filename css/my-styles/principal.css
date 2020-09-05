@@ -82,9 +82,10 @@ body{
 }
 
 .item-searcher{
-    height: 35px;
+    height: 33px;
     margin-right: 3px;
-    border-radius: 3px;
+    border-radius: 2px;
+    border: none;
 }
 
 .card-text .card-height{
@@ -106,7 +107,7 @@ body{
     margin: 0 .5em;
 }
 
-#btnWatchMore, #btnAddProduct{
+#btnWatchMore, #btnAddProduct, #btnAddService{
     display: none;
 }
 

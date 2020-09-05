@@ -11,5 +11,6 @@ function reloadPage(){
   HTMLString = [];
   cTot = 0;
   cPar = 0;
-  searcherGet(texto, country, city);
+  
+  searcherGet(texto, country, city, 'VISTOS RECIENTEMENTE');
 }

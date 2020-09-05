@@ -6,6 +6,7 @@ async function myProductsGet(){
     document.getElementById('btnWatchMore').style.display = 'none';
     document.getElementById('btnWatchMoreOnly').style.display = 'none';
     document.getElementById('btnAddProduct').style.display = 'flex';
+    document.getElementById('btnAddService').style.display = 'flex';
     document.getElementById('titlePrincipal').innerHTML = "MIS PRODUCTOS"
 
     const sectPrincipal = document.getElementById('sectionPrincipal');
@@ -159,6 +160,8 @@ async function myProductsGet(){
             
             const response = await fetch(url, dataDetails);
             const data = await response.text();
+
+            console.log(data)
     
             if(data == "ok")
                 alert("Los datos del producto se han actualizado");

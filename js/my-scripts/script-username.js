@@ -69,6 +69,8 @@ fetch('https://truequeprueba.herokuapp.com/events/buscar_usuario', dataDetails)
     dataUserLogged.lastLogin = myJson.ultimoLogin;
 
     loadNotifications();
+
+    searcherGetPrincipalFirst();
   })
   .catch(function(error) {
     console.log('Hubo un problema con la petición Fetch:' + error.message);
