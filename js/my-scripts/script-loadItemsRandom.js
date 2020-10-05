@@ -1,7 +1,7 @@
 document.getElementById("linkLogo").addEventListener("click", reloadPage);
 
 function reloadPage(){
-  window.location.href = "./html/principal.html"+"?"+"email="+data.email+"&"+"name="+data.nombre;
+  window.location.href = "/index.html";
 
   const texto = '';
   const country = '';

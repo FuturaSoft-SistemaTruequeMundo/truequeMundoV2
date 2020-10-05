@@ -142,42 +142,8 @@ body{
 }
 
 @media screen and (max-width: 1024px){
-    #searcher{
-        display: none !important; 
-    }
-
-    #btnSearch{
-        display: inline-block;
-    }
-    
     .container-principal{
         width: 95%;
-    }
-}
-
-@media screen and (max-width: 572px){
-    .card{
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 440px){
-    #headerTop{
-        flex-direction: column;
-    }
-
-    #headerTopRight{
-        height: 50px;
-        width: 100%;
-    }
-
-    #navList ul{
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    #navList{
-        width: 90vw;
     }
 }
 

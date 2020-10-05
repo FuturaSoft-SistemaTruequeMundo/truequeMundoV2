@@ -1,3 +1,9 @@
+const cantItems = 15;
+let cont = 0;
+let HTMLString = [];
+let cTot = 0;
+let cPar = 0;
+
 const searcher = document.getElementById('btnSearcher');
 searcher.addEventListener('click', searcherGetPrincipal);
 
@@ -111,49 +117,6 @@ async function searcherGet(texto, country, city, titleText){
     }
 
     document.getElementById('btnWatchMore').style.display = 'flex';
-    document.getElementById('btnWatchMoreOnly').style.display = 'none';
-    document.getElementById('btnAddProduct').style.display = 'none';
-    document.getElementById('btnAddService').style.display = 'none';
-
-    function updateViews(xLikes){
-        let x2Likes = parseInt(xLikes);
-    
-        console.log("antes" + x2Likes);
-    
-        x2Likes = x2Likes + 1;
-    
-        console.log("despues" + x2Likes);
-    
-            const dataDetails = {
-                method: 'POST',
-                body: JSON.stringify({
-                "email": dataUserLogged.email,
-                "codigo": it.codigo,
-                "nombre": it.nombre,
-                "tipo": it.tipo,
-                "categoria": it.categoria,
-                "condicion": it.condicion,
-                "estado": it.estado,
-                "descripcion": it.descripcion,
-                "visitas": it.visitas,
-                "file": []
-                }),
-                headers:{
-                    'Content-Type': 'application/json',
-                }
-                };     
-
-            fetch('https://truequeprueba.herokuapp.com/events/update_producto', dataDetails)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(myJson) {
-            console(data);
-        })
-        .catch(function(error) {
-            console.log('Hubo un problema con la petición Fetch:' + error.message);
-        });
-    }
 }
 
 const btnMore = document.getElementById('btnWatchMore');
@@ -185,3 +148,4 @@ function loadMoreProducts(){
     }
 }
 
+searcherGetPrincipalFirst();
